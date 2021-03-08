@@ -10,7 +10,7 @@ var wait = require('gulp-wait');
 var Paths = {
   HERE: './',
   DIST: 'dist/',
-  CSS: './task_manager/static/assets/css/',
+  CSS: './task_manager/static/css/',
   SCSS_TOOLKIT_SOURCES: './task_manager/static/assets/scss/black-dashboard.scss',
   SCSS: './task_manager/static/assets/scss/**/**',
 };
@@ -36,9 +36,20 @@ gulp.task('scss', function () {
     .pipe(browserSync.stream());
 });
 
+gulp.task('serve', gulp.series('scss', function () {
+  browserSync.init({
+      // server: paths.temp.base
+      port: 8000,
+      proxy: 'localhost:8000'
+  });
+
+  gulp.watch([Paths.SCSS + '/**/*.scss'], gulp.series('scss'));
+}));
+
+
 gulp.task('watch', function () {
-  gulp.watch(Paths.SCSS, ['compile-scss']);
+  gulp.watch(Paths.SCSS, ['scss']);
 });
 
-gulp.task('build', gulp.series('compile-scss'));
-gulp.task('default', gulp.series('compile-scss'));
+gulp.task('build', gulp.series('scss'));
+gulp.task('default', gulp.series('scss', 'serve'));
