@@ -16,4 +16,6 @@ urlpatterns = [
     ),
     path('auth/logout/', LogoutView.as_view(), name='user-logout'),
     path('auth/signup/', UserSignupView.as_view(), name='user-signup'),
+
+    # path('auth/', AuthView.as_view(), name='user-auth'),
 ]
