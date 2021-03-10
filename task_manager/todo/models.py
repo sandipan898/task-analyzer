@@ -9,6 +9,7 @@ class List(models.Model):
     completed = models.BooleanField(default=False, blank=True, null=True)
     time_added = models.DateTimeField(auto_now_add=True, blank=True, null=True) 
     work_time = models.FloatField(blank=True, null=True)
+    points = models.IntegerField(default=25, blank=True, null=True)
     
     def __str__(self):
         return f"{self.item} {self.completed}"

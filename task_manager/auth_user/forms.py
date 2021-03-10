@@ -41,17 +41,7 @@ class SignupUserForm(UserCreationForm):
             }
         )
     )
-    bio = forms.CharField(
-        label="Bio", 
-        required=False, 
-        max_length=400, 
-        widget=forms.Textarea(
-            attrs={
-                'class': 'form-control',
-            }
-        )
-    )
-    
+
     password1 = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(
@@ -75,11 +65,11 @@ class SignupUserForm(UserCreationForm):
         help_text=("Enter the same password as before, for verification.")
     )
 
-    image = forms.ImageField(
-        allow_empty_file=True, 
-        required=False,
-        # widget=forms.ImageField()
-    )
+    # image = forms.ImageField(
+    #     allow_empty_file=True, 
+    #     required=False,
+    #     # widget=forms.ImageField()
+    # )
 
 
     class Meta:
@@ -89,10 +79,10 @@ class SignupUserForm(UserCreationForm):
             "first_name",
             "last_name",
             "email",
-            "bio",
+            # "bio",
             "password1",
             "password2",
-            "image"
+            # "image"
         ]
         
         def clean_username(self):

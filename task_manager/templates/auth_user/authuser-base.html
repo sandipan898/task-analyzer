@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<body class="heavy-rain-gradient">
     <header>
-        {% include 'blog/navbar.html' %}
+        {% include 'navbar.html' %}
     </header>
-    <div class="heavy-rain-gradient">
+    <div>
         {% block content %}
         {% endblock %}
     </div>
-    {% include "blog/footer.html" %}
+    {% include "footer.html" %}
+</body>
 {% endblock %}

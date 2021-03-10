@@ -36,13 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django_gulp',
+    # 'django_gulp',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
 
     'auth_user',
     'todo',
-    'allauth',
+    # 'allauth',
     'crispy_forms'    
 ]
 
@@ -136,8 +135,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/assets/images/')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'dashboard'
-LOGOUT_REDIRECT_URL = 'home'
+# LOGIN_REDIRECT_URL = 'dashboard'
+# LOGOUT_REDIRECT_URL = 'home'
 
 GULP_CWD = '../'
 GULP_DEVELOP_COMMAND = 'gulp'

@@ -6,26 +6,18 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.views import generic
 import requests
 from django.contrib.auth.mixins import LoginRequiredMixin
-# Create your views here.
 
-def home_view(request):
-    template_name = "todo/welcome.html"
-    # list_for_user = List.objects.filter(user=request.user)
-    # no_of_items = list_for_user.count()
-    # no_of_incomplete_items = list_for_user.filter(completed=False).count()
-    # print(no_of_incomplete_items)
-    # context = {'no_of_items': no_of_items, 'no_of_incomplete_items': no_of_incomplete_items, 'user': request.user}
-    return render(request, template_name)
+# Create your views here.
 
 
 class HomeView(generic.TemplateView):
-    template_name = "todo/landing/index.html"
+    template_name = "todo/home.html"
 
 
 class DashboardView(LoginRequiredMixin, generic.View):
     login_url = '/user/auth/login/'
     redirect_field_name = 'home'
-    template_name = 'todo/examples/dashboard.html'
+    template_name = 'todo/dashboard.html'
 
     def get(self, request, *args, **kwargs):
         pass
