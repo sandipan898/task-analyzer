@@ -209,7 +209,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background: #FFFFFF;
+  background: #06102b;
   /* Fallback for when there is no custom background color defined. */
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased; }
@@ -218,8 +218,8 @@ hr {
   border: 0;
   display: block;
   height: 1px;
-  background: #D2DAF0;
-  background: linear-gradient(to right, rgba(210, 218, 240, 0.1) 0, rgba(210, 218, 240, 0.6) 50%, rgba(210, 218, 240, 0.1) 100%);
+  background: #06102b;
+  background: linear-gradient(to right, rgba(6, 16, 43, 0.1) 0, rgba(6, 16, 43, 0.6) 50%, rgba(6, 16, 43, 0.1) 100%);
   margin-top: 24px;
   margin-bottom: 24px; }
 
@@ -275,7 +275,7 @@ table {
   width: 100%; }
 
 tr {
-  border-bottom: 1px solid #D2DAF0; }
+  border-bottom: 1px solid #06102b; }
 
 th {
   text-align: left; }
@@ -463,7 +463,7 @@ address {
   color: #565678;
   border-width: 1px 0;
   border-style: solid;
-  border-color: #D2DAF0;
+  border-color: #06102b;
   padding: 24px 0;
   margin: 0 0 24px; }
 
@@ -608,8 +608,8 @@ label {
     width: 100%;
     display: block;
     height: 1px;
-    background: #D2DAF0;
-    background: linear-gradient(to right, rgba(210, 218, 240, 0.1) 0, rgba(210, 218, 240, 0.6) 50%, rgba(210, 218, 240, 0.1) 100%); }
+    background: #06102b;
+    background: linear-gradient(to right, rgba(6, 16, 43, 0.1) 0, rgba(6, 16, 43, 0.6) 50%, rgba(6, 16, 43, 0.1) 100%); }
 
 .has-bottom-divider {
   position: relative; }
@@ -621,8 +621,8 @@ label {
     width: 100%;
     display: block;
     height: 1px;
-    background: #D2DAF0;
-    background: linear-gradient(to right, rgba(210, 218, 240, 0.1) 0, rgba(210, 218, 240, 0.6) 50%, rgba(210, 218, 240, 0.1) 100%); }
+    background: #06102b;
+    background: linear-gradient(to right, rgba(6, 16, 43, 0.1) 0, rgba(6, 16, 43, 0.6) 50%, rgba(6, 16, 43, 0.1) 100%); }
 
 .m-0 {
   margin: 0; }
@@ -911,7 +911,7 @@ label {
   background-color: #FFFFFF;
   border-width: 1px;
   border-style: solid;
-  border-color: #D2DAF0;
+  border-color: #06102b;
   border-radius: 2px;
   color: #565678;
   max-width: 100%;
@@ -927,7 +927,7 @@ label {
     color: #ABABC9; }
   .input:hover,
   .textarea:hover {
-    border-color: #bfcaea; }
+    border-color: #030815; }
   .input:active, .input:focus,
   .textarea:active,
   .textarea:focus {

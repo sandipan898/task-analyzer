@@ -13,7 +13,7 @@ var Paths = {
   CSS1: './task_manager/static/css/',
   CSS2: './task_manager/static/css/landing.css',
   SCSS_TOOLKIT_SOURCES1: './task_manager/static/assets/scss/black-dashboard.scss',
-  SCSS_TOOLKIT_SOURCES2: './src/scss/**/*.scss',
+  SCSS_TOOLKIT_SOURCES2: './src/scss/**/**',
   SCSS: './task_manager/static/assets/scss/**/**',
 };
 
@@ -58,7 +58,7 @@ gulp.task('serve', gulp.series('scss1', 'scss2', function () {
       proxy: 'localhost:8000'
   });
 
-  gulp.watch([Paths.SCSS + '/**/*.scss'], gulp.series('scss1', 'scss2'));
+  gulp.watch([Paths.SCSS_TOOLKIT_SOURCES2 + '/**/*.scss', Paths.SCSS_TOOLKIT_SOURCES2 + '/**/*.scss'], gulp.series('scss1', 'scss2'));
 }));
 
 
