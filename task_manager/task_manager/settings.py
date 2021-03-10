@@ -135,8 +135,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/assets/images/')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# LOGIN_REDIRECT_URL = 'dashboard'
-# LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'home'
 
 GULP_CWD = '../'
 GULP_DEVELOP_COMMAND = 'gulp'

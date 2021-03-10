@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<body class="rgba(158, 158, 158, 0.7) rgba-grey-strong">
+    
+</body>
     <header>
         {% include 'navbar.html' %}
     </header>
-    <div class="heavy-rain-gradient">
         {% block content %}
         {% endblock %}
-    </div>
     {% include "footer.html" %}
 {% endblock %}

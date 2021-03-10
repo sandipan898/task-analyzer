@@ -18,12 +18,27 @@ class DashboardView(LoginRequiredMixin, generic.View):
     login_url = '/user/auth/login/'
     redirect_field_name = 'home'
     template_name = 'todo/dashboard.html'
+    context = {}
 
     def get(self, request, *args, **kwargs):
-        pass
+        self.context['objects'] = 'all_items'
+        return render(self.request, self.template_name, self.context)
+
 
     def post(self, request, *args, **kwargs):
-        pass
+        form = ListForm(request.POST or None)
+        if form.is_valid():
+            print(form.cleaned_data)
+            item = form.cleaned_data['item']
+            completed = form.cleaned_data['completed']
+            List.objects.create(user=request.user, item=item, completed=completed)
+            form.save()
+            list_for_user = List.objects.filter(user=request.user)
+            print(request.user.list_set)
+            all_items = List.objects.filter(user=request.user).all()
+            self.context['objects'] = all_items
+            messages.success(request, ("It has been added to the list!"))
+        return render(self.request, self.template_name, self.context)
 
 
 # @login_required

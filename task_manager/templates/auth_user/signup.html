@@ -9,6 +9,7 @@
                 <h1 class="my-4">
                     <strong>SignUp</strong>
                 </h1>
+                
                 <form class="form" action="{% url 'user-signup' %}" method="POST">
                     {% csrf_token %}
                     {{ form.non_field_errors }}
@@ -24,7 +25,7 @@
                         <div class="form-group col-md-4 mb-0 text-primary">
                             {{field.help_text}}
                         </div>
-                        <div class="form-group col-md-4 mb-0 red-text">
+                        <div class="form-group col-md-4 mb-0 text-danger">
                             {{field.errors}}
                         </div>
                     </div>
@@ -34,8 +35,8 @@
                     <div class="pt-4">
                         <button type="submit" class="btn btn-primary active">Sign Up</button>
                     </div>
-
                 </form>
+                <div class="mt-2">Already have an account? <a href="{% url 'user-login' %}"> Login here</a></div>
             </div>
         </section>
     </div>
