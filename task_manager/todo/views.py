@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ListForm
 from django.contrib import messages
 from .models import List
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.views import generic
 import requests
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 def home_view(request):
@@ -13,7 +15,24 @@ def home_view(request):
     # no_of_incomplete_items = list_for_user.filter(completed=False).count()
     # print(no_of_incomplete_items)
     # context = {'no_of_items': no_of_items, 'no_of_incomplete_items': no_of_incomplete_items, 'user': request.user}
-    return render(request, template_name, context)
+    return render(request, template_name)
+
+
+class HomeView(generic.TemplateView):
+    template_name = "todo/landing/index.html"
+
+
+class DashboardView(LoginRequiredMixin, generic.View):
+    login_url = '/user/auth/login/'
+    redirect_field_name = 'home'
+    template_name = 'todo/examples/dashboard.html'
+
+    def get(self, request, *args, **kwargs):
+        pass
+
+    def post(self, request, *args, **kwargs):
+        pass
+
 
 # @login_required
 def dashboard_view(request):
@@ -37,7 +56,7 @@ def dashboard_view(request):
         # all_items = List.objects.filter(user=request.user).all()
         context['objects'] = 'all_items'
     
-    return render(request, template_name, context=context)
+    return render(request, template_name)
 
 @login_required
 def delete(request, id):
