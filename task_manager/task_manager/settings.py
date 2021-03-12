@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", 't_f(68wd3g*jspnq^by#pfm&3*oss*s6=g$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "https://dailytaskanalyzer.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "dailytaskanalyzer.herokuapp.com", "herokuapp.com"]
 SITE_ID = 1
 
 # Application definition
