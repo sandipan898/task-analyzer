@@ -4,7 +4,6 @@ from django.contrib import messages
 from .models import List
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views import generic
-import requests
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.

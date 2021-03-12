@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<body class="#d7ccc8 brown lighten-4">
-    
-</body>
+<body class="#ffd180 orange accent-1">
     <header>
         {% include 'navbar.html' %}
     </header>
+
         {% block content %}
         {% endblock %}
-    {% include "footer.html" %}
+    
+        {% include "footer.html" %}
+</body>
 {% endblock %}
