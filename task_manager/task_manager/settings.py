@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -80,6 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -145,6 +147,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'home'
 
-GULP_CWD = '../'
-GULP_DEVELOP_COMMAND = 'gulp'
-GULP_PRODUCTION_COMMAND = 'gulp build --production'
+# GULP_CWD = '../'
+# GULP_DEVELOP_COMMAND = 'gulp'
+# GULP_PRODUCTION_COMMAND = 'gulp build --production'
