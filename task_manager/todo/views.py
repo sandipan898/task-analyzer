@@ -39,6 +39,8 @@ class DashboardView(LoginRequiredMixin, generic.View):
 
 
 class ManageListView(generic.View):
+    context = {}
+    template_name = 'todo/task-manager.html'
     def get(self, request, *args, **kwargs):
         pass
 
@@ -47,40 +49,15 @@ class ManageListView(generic.View):
         if form.is_valid():
             print(form.cleaned_data)
             item = form.cleaned_data['item']
-            completed = form.cleaned_data['completed']
-            List.objects.create(user=request.user, item=item, completed=completed)
+            weight = form.cleaned_data['weight']
+            List.objects.create(user=request.user, item=item, weight=weight)
             form.save()
-            list_for_user = List.objects.filter(user=request.user)
             print(request.user.list_set)
-            all_items = List.objects.filter(user=request.user).all()
-            self.context['objects'] = all_items
-            messages.success(request, ("It has been added to the list!"))
+            all_tasks = List.objects.filter(user=request.user).all()
+            self.context['all_tasks'] = all_tasks
+            messages.success(request, ("Task has been added to the list!"))
         return render(self.request, self.template_name, self.context)
 
-
-# @login_required
-def dashboard_view(request):
-    template_name = 'todo/examples/dashboard.html'
-    context = {}
-    if request.method == "POST":
-        form = ListForm(request.POST or None)
-        if form.is_valid():
-            print(form.cleaned_data)
-            item = form.cleaned_data['item']
-            completed = form.cleaned_data['completed']
-            # List.objects.create(user=request.user, item=item, completed=completed)
-            #form.save()
-            #list_for_user = List.objects.filter(user=request.user)
-            #print(request.user.list_set)
-            # all_items = List.objects.filter(user=request.user).all()
-            # context['objects'] = all_items
-            messages.success(request, ("It has been added to the list!"))
-    
-    else:
-        # all_items = List.objects.filter(user=request.user).all()
-        context['objects'] = 'all_items'
-    
-    return render(request, template_name)
 
 @login_required
 def delete(request, id):
@@ -122,20 +99,20 @@ def update(request, id):
         return render(request, template_name, context)
 
 
-def about_view(request):
-    template_name = 'todo_list/about_page.html'
-    context = {}
-    return render(request, template_name, context)
+# def about_view(request):
+#     template_name = 'todo_list/about_page.html'
+#     context = {}
+#     return render(request, template_name, context)
 
-def contact_view(request):
-    template_name = 'todo_list/contact_page.html'
-    context = {'emails': ['sandipan.das898@gmail.com', 'sisir.das983@gmail.com'], 
-                'github': 'https://github.com/sandipan89',
-                'linkedin': 'https://www.linkedin.com/in/sandipan-das-528166175/',
-                }
-    return render(request, template_name, context)
+# def contact_view(request):
+#     template_name = 'todo_list/contact_page.html'
+#     context = {'emails': ['sandipan.das898@gmail.com', 'sisir.das983@gmail.com'], 
+#                 'github': 'https://github.com/sandipan89',
+#                 'linkedin': 'https://www.linkedin.com/in/sandipan-das-528166175/',
+#                 }
+#     return render(request, template_name, context)
 
-def help_view(request):
-    template_name = 'todo_list/help_page.html'
-    context = {}
-    return render(request, template_name, context)
+# def help_view(request):
+#     template_name = 'todo_list/help_page.html'
+#     context = {}
+#     return render(request, template_name, context)

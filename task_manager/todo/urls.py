@@ -1,19 +1,23 @@
 from django.urls import path
+from django.views.generic import TemplateView
 from .views import (
-    dashboard_view, delete, DashboardView, 
+    delete, DashboardView, 
     done, undone, update, ManageListView,
-    help_view, about_view, contact_view, HomeView
+     HomeView
 )
+
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
-    path('task-manager/', DashboardView.as_view(), name='task-manager'),
-    path('about/', about_view, name='about'),
-    path('help/', help_view, name='help'),
-    path('contact/', contact_view, name='contact'),
+    path('task-manager/', DashboardView.as_view(), name='task-manager'),    
+
     path('delete/<int:id>', delete, name='delete'),
     path('done/<int:id>', done, name='mark_done'),
     path('undone/<int:id>', undone, name='mark_undone'),
     path('update/<int:id>', update, name='update'),
+
+    path('about/', TemplateView.as_view(template_name='todo/about.html'), name='about'),
+    path('help/', TemplateView.as_view(template_name='todo/help.html'), name='help'),
+    path('contact/', TemplateView.as_view(template_name='todo/contact.html'), name='contact'),
 ]

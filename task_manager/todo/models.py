@@ -32,12 +32,14 @@ class TimeDivision(models.Model):
 
 
 def calculate_score(tasks):
-    total_score = 0
-    current_score = 0
+    if tasks:
+        total_score = 0
+        current_score = 0
 
-    for task in tasks:
-        total_score += task.get_score
-        current_score += task.get_score if task.is_completed else 0
-    
-    return current_score / total_score * 1000 
-
+        for task in tasks:
+            total_score += task.get_score
+            current_score += task.get_score if task.is_completed else 0
+        
+        return current_score / total_score * 1000 
+    else:
+        return None
