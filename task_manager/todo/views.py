@@ -23,7 +23,14 @@ class DashboardView(LoginRequiredMixin, generic.View):
     def get(self, request, *args, **kwargs):
         self.context['objects'] = 'all_items'
         return render(self.request, self.template_name, self.context)
+    
+    def post(self, request, *args, **kwargs):
+        pass
 
+
+class ManageListView(generic.View):
+    def get(self, request, *args, **kwargs):
+        pass
 
     def post(self, request, *args, **kwargs):
         form = ListForm(request.POST or None)
@@ -39,6 +46,7 @@ class DashboardView(LoginRequiredMixin, generic.View):
             self.context['objects'] = all_items
             messages.success(request, ("It has been added to the list!"))
         return render(self.request, self.template_name, self.context)
+
 
 
 # @login_required
