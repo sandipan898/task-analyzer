@@ -10,23 +10,28 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import sys
+import psycopg2
+import dj_database_url
 from pathlib import Path
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+PROJECT_DIR = os.path.dirname(__file__) # this is not Django setting.
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 't_f(68wd3g*jspnq^by#pfm&3*oss*s6=g$l-glw$r&_e1i8-7'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", 't_f(68wd3g*jspnq^by#pfm&3*oss*s6=g$l-glw$r&_e1i8-7')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["127.0.0.1", "https://dailytaskanalyzer.herokuapp.com"]
+SITE_ID = 1
 
 # Application definition
 
@@ -85,6 +90,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
