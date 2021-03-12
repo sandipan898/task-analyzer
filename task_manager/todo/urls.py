@@ -1,13 +1,14 @@
 from django.urls import path
 from .views import (
     dashboard_view, delete, DashboardView, 
-    done, undone, update, 
+    done, undone, update, ManageListView,
     help_view, about_view, contact_view, HomeView
 )
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('task-manager/', DashboardView.as_view(), name='task-manager'),
     path('about/', about_view, name='about'),
     path('help/', help_view, name='help'),
     path('contact/', contact_view, name='contact'),
