@@ -34,12 +34,19 @@ class TimeDivision(models.Model):
 class ScoreStat(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     current_score = models.IntegerField(default=0, blank=True, null=True)
-    seven_days_score = models.IntegerField(default=0, blank=True, null=True)
+    seven_days_score = models.CharField(max_length=300, blank=True, null=True)
+    score_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     
     @property
-    def calculate_score():
-        total_tasks = List.objects.filter(user=request.user).all()
+    def refresh_score(self): 
+        if abs(self.score_date.timestamp() - datetime.datetime.now().timestamp()) > 24:
+            seven_days_score.concat(current_score + ' ')
+            self.current_score = 0
 
+    @property
+    def calculate_score(self):
+        total_tasks = List.objects.filter(user=self.user).all()
+        print(self.user)
         if total_tasks:
             total_score = 0
             current_score = 0
@@ -52,7 +59,7 @@ class ScoreStat(models.Model):
                 self.current_score = 0
     
     @property
-    def calculate_seven_days_score(user):
+    def calculate_seven_days_score(self):
         seven_days_score = 0
         List.objects.filter(user=user)
         return seven_days_score

@@ -23,9 +23,10 @@ class DashboardView(LoginRequiredMixin, generic.View):
         incomplete_tasks = List.objects.filter(user=request.user, is_completed=False)
         complete_tasks = List.objects.filter(user=request.user, is_completed=True)
 
-        score_stat = ScoreStat.objects.get(user=self.request.user)
-        current_score = score_stat.calculate_score
-        print(current_score)
+        score_stat, created = ScoreStat.objects.get_or_create(user=self.request.user)
+        score_stat.calculate_score
+        score_stat.save()
+        current_score = score_stat.current_score
         
         self.context = {
             'incomplete_tasks_count': incomplete_tasks.count(),
