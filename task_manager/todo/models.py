@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 # Create your models here.
 
 
@@ -30,16 +31,29 @@ class TimeDivision(models.Model):
     def __str__(self):
         return f"{self.name} : {self.start_time} - {self.end_time}"
 
+class ScoreStat(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    current_score = models.IntegerField(default=0, blank=True, null=True)
+    seven_days_score = models.IntegerField(default=0, blank=True, null=True)
+    
+    @property
+    def calculate_score():
+        total_tasks = List.objects.filter(user=request.user).all()
 
-def calculate_score(tasks):
-    if tasks:
-        total_score = 0
-        current_score = 0
+        if total_tasks:
+            total_score = 0
+            current_score = 0
 
-        for task in tasks:
-            total_score += task.get_score
-            current_score += task.get_score if task.is_completed else 0
+            for task in tasks:
+                total_score += task.get_score
+                current_score += task.get_score if task.is_completed else 0
+                self.current_score = current_score / total_score * 1000 
+            else:
+                self.current_score = 0
+    
+    @property
+    def calculate_seven_days_score(user):
+        seven_days_score = 0
+        List.objects.filter(user=user)
+        return seven_days_score
         
-        return current_score / total_score * 1000 
-    else:
-        return None

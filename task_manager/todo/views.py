@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ListForm
 from django.contrib import messages
-from .models import List, calculate_score
+from .models import List, ScoreStat
 from django.contrib.auth.decorators import login_required, permission_required
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -22,9 +22,9 @@ class DashboardView(LoginRequiredMixin, generic.View):
     def get(self, request, *args, **kwargs):
         incomplete_tasks = List.objects.filter(user=request.user, is_completed=False)
         complete_tasks = List.objects.filter(user=request.user, is_completed=True)
-        total_tasks = List.objects.filter(user=request.user).all()
 
-        current_score = calculate_score(total_tasks)
+        score_stat = ScoreStat.objects.get(user=self.request.user)
+        current_score = score_stat.calculate_score
         print(current_score)
         
         self.context = {
