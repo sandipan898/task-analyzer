@@ -24,14 +24,18 @@ class DashboardView(LoginRequiredMixin, generic.View):
         complete_tasks = List.objects.filter(user=request.user, is_completed=True)
 
         score_stat, created = ScoreStat.objects.get_or_create(user=self.request.user)
+        score_stat.refresh_score
         score_stat.calculate_score
         score_stat.save()
+
+        seven_days_scores = score_stat.calculate_seven_days_score
         current_score = score_stat.current_score
         
         self.context = {
             'incomplete_tasks_count': incomplete_tasks.count(),
             'complete_tasks_count': complete_tasks.count(),
-            'current_score': current_score
+            'current_score': current_score,
+            'seven_days_scores': seven_days_scores
         }
         return render(self.request, self.template_name, self.context)
     

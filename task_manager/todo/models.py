@@ -39,8 +39,12 @@ class ScoreStat(models.Model):
     
     @property
     def refresh_score(self): 
-        if abs(self.score_date.timestamp() - datetime.datetime.now().timestamp()) > 24:
-            seven_days_score.concat(current_score + ' ')
+        time_difference = self.score_date.timestamp() - datetime.datetime.now().timestamp()
+        print(time_difference)
+        if abs(time_difference) > 24:
+            self.seven_days_score.concat(current_score + ' ')
+            print(self.seven_days_score)
+
             self.current_score = 0
 
     @property
@@ -60,7 +64,7 @@ class ScoreStat(models.Model):
     
     @property
     def calculate_seven_days_score(self):
-        seven_days_score = 0
-        List.objects.filter(user=user)
-        return seven_days_score
+        seven_days_scores = self.seven_days_score.split(' ')
+        print(seven_days_scores)
+        return seven_days_scores
         
