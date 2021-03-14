@@ -16,7 +16,7 @@ class List(models.Model):
     
     @property
     def get_score(self):
-        return self.weight*self.score
+        return self.weight*self.points
 
     def __str__(self):
         return f"{self.item} : {self.is_completed}"
@@ -42,7 +42,7 @@ class ScoreStat(models.Model):
         time_difference = self.score_date.timestamp() - datetime.datetime.now().timestamp()
         print(time_difference)
         if abs(time_difference) > 24:
-            self.seven_days_score.concat(current_score + ' ')
+            self.seven_days_score + str(self.current_score) + ' '
             print(self.seven_days_score)
 
             self.current_score = 0
@@ -50,17 +50,17 @@ class ScoreStat(models.Model):
     @property
     def calculate_score(self):
         total_tasks = List.objects.filter(user=self.user).all()
-        print(self.user)
+        print(total_tasks)
         if total_tasks:
             total_score = 0
             current_score = 0
 
-            for task in tasks:
+            for task in total_tasks:
                 total_score += task.get_score
                 current_score += task.get_score if task.is_completed else 0
-                self.current_score = current_score / total_score * 1000 
-            else:
-                self.current_score = 0
+            self.current_score = current_score / total_score * 1000 
+        else:
+            self.current_score = 0
     
     @property
     def calculate_seven_days_score(self):
@@ -68,3 +68,5 @@ class ScoreStat(models.Model):
         print(seven_days_scores)
         return seven_days_scores
         
+    def __str__(self):
+        return f"{self.user} : {self.current_score}"
