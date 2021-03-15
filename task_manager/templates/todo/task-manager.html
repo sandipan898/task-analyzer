@@ -17,19 +17,19 @@
                         <table class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th scope="col">Task Name</th>
-                                    <th scope="col">Date Added</th>
-                                    <th scope="col">Priority</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Actions</th>
-                                    <th scope="col">Actions</th>
+                                    <th class="h5" scope="col">Task Name</th>
+                                    <th class="h5" scope="col">Date Added</th>
+                                    <th class="h5" scope="col">Priority</th>
+                                    <th class="h5" scope="col">Status</th>
+                                    <th class="h5" scope="col">Actions</th>
+                                    <th class="h5" scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for task in tasks %}
                                 <tr>
-                                    <th scope="row">{{task.title}}</th>
-                                    <td>18,492</td>
+                                    <th scope="row">{{task.name}}</th>
+                                    <td>{{task.time_added}}</td>
                                     <td>228</td>
                                     <td>350</td>
                                     <td>$4,787.64</td>
