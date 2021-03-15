@@ -49,8 +49,10 @@ class ManageListView(generic.View):
     
     def get(self, request, *args, **kwargs):
         tasks = List.objects.filter(user=request.user)
+        form = ListForm()
         self.context = {
             'tasks': tasks,
+            'task_form': form
             # 'complete_tasks_count': complete_tasks.count(),
             # 'current_score': current_score,
         }
@@ -60,15 +62,15 @@ class ManageListView(generic.View):
         form = ListForm(request.POST or None)
         if form.is_valid():
             print(form.cleaned_data)
-            item = form.cleaned_data['item']
+            name = form.cleaned_data['name']
             weight = form.cleaned_data['weight']
-            List.objects.create(user=request.user, item=item, weight=weight)
+            List.objects.create(user=request.user, name=name, weight=weight)
             form.save()
-            print(request.user.list_set)
-            all_tasks = List.objects.filter(user=request.user).all()
-            self.context['all_tasks'] = all_tasks
+            # all_tasks = List.objects.filter(user=request.user).all()
+            #     self.context['all_tasks'] = all_tasks
             messages.success(request, ("Task has been added to the list!"))
-        return render(self.request, self.template_name, self.context)
+            # return render(self.request, self.template_name, self.context)
+            return redirect('task-manager')
 
 
 @login_required
@@ -76,39 +78,37 @@ def delete(request, id):
     item = get_object_or_404(List, id=id)
     item.delete()
     messages.success(request, ('Item has been deleted successfully!'))
-    return redirect('home')
+    return redirect('task-manager')
 
 @login_required
 def done(request, id):
     item = get_object_or_404(List, id=id)
-    item.completed = True
+    item.is_completed = True
+    item.status = 'Work completed'
     item.save()
-    return redirect('home')
+    return redirect('task-manager')
 
 @login_required
 def undone(request, id):
     item = get_object_or_404(List, id=id)
-    item.completed = False
+    item.is_completed = False
+    item.status = 'Work not completed'    
     item.save()
-    return redirect('home')
+    return redirect('task-manager')
 
 @login_required
 def update(request, id):
-    template_name = 'todo_list/update.html'
-    context = {}
     if request.method == "POST":
         item = get_object_or_404(List, id=id)
         form = ListForm(request.POST or None, instance=item)
-
+        print(form)
         if form.is_valid():
             form.save()
             messages.success(request, ('Item has been edited'))
-            return redirect('home')
+            return redirect('task-manager')
     
     else:
-        item = get_object_or_404(List, id=id)
-        context['object'] = item
-        return render(request, template_name, context)
+        return redirect('task-manager')
 
 
 # def about_view(request):

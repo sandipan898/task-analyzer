@@ -12,7 +12,7 @@ class List(models.Model):
     time_worked = models.FloatField(blank=True, null=True)
     points = models.IntegerField(default=25, blank=True, null=True)
     weight = models.IntegerField(default=1, blank=True, null=True)
-    status = models.CharField(default="Incomplete", max_length = 300, blank=True, null=True)
+    status = models.CharField(default="Work not Completed", max_length = 300, blank=True, null=True)
     
     @property
     def get_score(self):
