@@ -48,6 +48,12 @@ class ManageListView(generic.View):
     template_name = 'todo/task-manager.html'
     
     def get(self, request, *args, **kwargs):
+        tasks = List.objects.filter(user=request.user)
+        self.context = {
+            'tasks': tasks,
+            # 'complete_tasks_count': complete_tasks.count(),
+            # 'current_score': current_score,
+        }
         return render(self.request, self.template_name, self.context)
 
     def post(self, request, *args, **kwargs):

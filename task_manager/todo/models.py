@@ -6,7 +6,7 @@ import datetime
 
 class List(models.Model):
     user = models.ForeignKey(User, related_name="list_user", on_delete=models.CASCADE, null=True)
-    item = models.CharField(max_length = 300, blank=True, null=True)
+    name = models.CharField(max_length = 300, blank=True, null=True)
     is_completed = models.BooleanField(default=False, blank=True, null=True)
     time_added = models.DateTimeField(auto_now_add=True, blank=True, null=True) 
     time_worked = models.FloatField(blank=True, null=True)
