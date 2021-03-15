@@ -46,8 +46,9 @@ class DashboardView(LoginRequiredMixin, generic.View):
 class ManageListView(generic.View):
     context = {}
     template_name = 'todo/task-manager.html'
+    
     def get(self, request, *args, **kwargs):
-        pass
+        return render(self.request, self.template_name, self.context)
 
     def post(self, request, *args, **kwargs):
         form = ListForm(request.POST or None)

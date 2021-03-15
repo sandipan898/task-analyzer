@@ -10,7 +10,7 @@ from .views import (
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
-    path('task-manager/', DashboardView.as_view(), name='task-manager'),    
+    path('task-manager/', ManageListView.as_view(), name='task-manager'),    
 
     path('delete/<int:id>', delete, name='delete'),
     path('done/<int:id>', done, name='mark_done'),
