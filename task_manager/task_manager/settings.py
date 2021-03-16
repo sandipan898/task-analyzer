@@ -47,6 +47,8 @@ INSTALLED_APPS = [
 
     'auth_user',
     'todo',
+    # 'rest_framework',
+
     # 'allauth',
     'crispy_forms'    
 ]
@@ -115,6 +117,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ], 
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -152,21 +159,5 @@ LOGOUT_REDIRECT_URL = 'home'
 # GULP_DEVELOP_COMMAND = 'gulp'
 # GULP_PRODUCTION_COMMAND = 'gulp build --production'
 
-
-import pytz
-
-from django.utils import timezone
-
-class TimezoneMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
-
-    def __call__(self, request):
-        tzname = request.session.get('django_timezone')
-        if tzname:
-            timezone.activate(pytz.timezone(tzname))
-        else:
-            timezone.deactivate()
-        return self.get_response(request)
 
     

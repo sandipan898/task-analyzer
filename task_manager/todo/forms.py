@@ -16,7 +16,7 @@ class ListForm(forms.ModelForm):
     weight = forms.IntegerField(
         label="Priority", 
         required=False, 
-        widget=forms.TextInput(
+        widget=forms.NumberInput(
             attrs={
                 'class': 'form-control',
             }

@@ -5,6 +5,7 @@ from .views import (
     done, undone, update, ManageListView,
      HomeView
 )
+# from .apis import ListUpdateAPI
 
 from .apis import TaskUpdateAPI
 
@@ -17,6 +18,7 @@ urlpatterns = [
     path('delete/<int:id>', delete, name='delete'),
     path('done/<int:id>', done, name='mark_done'),
     path('undone/<int:id>', undone, name='mark_undone'),
+    # path('update/<str:name>', ListUpdateAPI.as_view(), name='update'),
     path('update/<int:id>', update, name='update'),
     # path('update/<int:id>', TaskUpdateAPI.as_view(), name='update'),
 
