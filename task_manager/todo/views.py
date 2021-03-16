@@ -106,15 +106,8 @@ def update(request, id):
             form.save()
             messages.success(request, ('Item has been edited'))
             return redirect('task-manager')
-    
     else:
         return redirect('task-manager')
-
-
-# def about_view(request):
-#     template_name = 'todo_list/about_page.html'
-#     context = {}
-#     return render(request, template_name, context)
 
 # def contact_view(request):
 #     template_name = 'todo_list/contact_page.html'
@@ -122,9 +115,4 @@ def update(request, id):
 #                 'github': 'https://github.com/sandipan89',
 #                 'linkedin': 'https://www.linkedin.com/in/sandipan-das-528166175/',
 #                 }
-#     return render(request, template_name, context)
-
-# def help_view(request):
-#     template_name = 'todo_list/help_page.html'
-#     context = {}
 #     return render(request, template_name, context)

@@ -5,6 +5,7 @@ from .views import (
     done, undone, update, ManageListView,
      HomeView
 )
+# from .apis import ListUpdateAPI
 
 
 urlpatterns = [
@@ -15,6 +16,7 @@ urlpatterns = [
     path('delete/<int:id>', delete, name='delete'),
     path('done/<int:id>', done, name='mark_done'),
     path('undone/<int:id>', undone, name='mark_undone'),
+    # path('update/<str:name>', ListUpdateAPI.as_view(), name='update'),
     path('update/<int:id>', update, name='update'),
 
     path('about/', TemplateView.as_view(template_name='todo/about.html'), name='about'),
