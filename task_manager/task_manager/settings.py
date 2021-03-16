@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     # 'django_gulp',
     'django.contrib.staticfiles',
+    'rest_framework',
 
     'auth_user',
     'todo',

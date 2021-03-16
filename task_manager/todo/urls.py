@@ -6,6 +6,8 @@ from .views import (
      HomeView
 )
 
+from .apis import TaskUpdateAPI
+
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -16,6 +18,7 @@ urlpatterns = [
     path('done/<int:id>', done, name='mark_done'),
     path('undone/<int:id>', undone, name='mark_undone'),
     path('update/<int:id>', update, name='update'),
+    # path('update/<int:id>', TaskUpdateAPI.as_view(), name='update'),
 
     path('about/', TemplateView.as_view(template_name='todo/about.html'), name='about'),
     path('help/', TemplateView.as_view(template_name='todo/help.html'), name='help'),
